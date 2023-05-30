@@ -1,0 +1,18 @@
+@import url('./main-layout.css');
+@import url('./views/portofolio-overview-view.css');
+@import url('./views/investor-list-view.css');
+@import url('./views/impact-plans-view.css');
+@import url('./views/portfolio-bearbeiten-view.css');    html {
+      --lumo-border-radius-s: calc(var(--lumo-size-m) / 6);
+      --lumo-border-radius-m: calc(var(--lumo-size-m) / 2);
+      --lumo-border-radius-l: var(--lumo-size-m);
+      --lumo-primary-text-color: hsl(187,60%,45%);
+      --lumo-error-text-color: hsl(52, 92%, 53%);
+      --lumo-error-color: hsl(52, 92%, 53%);
+      --lumo-error-color-50pct: hsla(52, 92%, 53%, 0.5);
+      --lumo-error-color-10pct: hsla(52, 92%, 53%, 0.1);
+      --lumo-primary-color: hsl(186,73%,33%);
+      --lumo-primary-color-50pct: hsla(186,73%,33%, 0.5);
+      --lumo-primary-color-10pct: hsla(186,73%,33%, 0.1);
+
+    }
