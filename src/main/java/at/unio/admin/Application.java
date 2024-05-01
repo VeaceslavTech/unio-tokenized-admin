@@ -1,6 +1,6 @@
 package at.unio.admin;
 
-import at.unio.admin.data.service.SamplePersonRepository;
+import at.unio.admin.data.service.ImpactCalculationRepository;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;
 import javax.sql.DataSource;
@@ -17,26 +17,27 @@ import org.springframework.context.annotation.Bean;
  * and some desktop browsers.
  *
  */
+@SuppressWarnings("serial")
 @SpringBootApplication
 @Theme(value = "uniotokenizedadmin")
 public class Application implements AppShellConfigurator {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
 
-    @Bean
-    SqlDataSourceScriptDatabaseInitializer dataSourceScriptDatabaseInitializer(DataSource dataSource,
-            SqlInitializationProperties properties, SamplePersonRepository repository) {
-        // This bean ensures the database is only initialized when empty
-        return new SqlDataSourceScriptDatabaseInitializer(dataSource, properties) {
-            @Override
-            public boolean initializeDatabase() {
-                if (repository.count() == 0L) {
-                    return super.initializeDatabase();
-                }
-                return false;
-            }
-        };
-    }
+	@Bean
+	SqlDataSourceScriptDatabaseInitializer dataSourceScriptDatabaseInitializer(DataSource dataSource,
+			SqlInitializationProperties properties, ImpactCalculationRepository repository) {
+		// This bean ensures the database is only initialized when empty
+		return new SqlDataSourceScriptDatabaseInitializer(dataSource, properties) {
+			@Override
+			public boolean initializeDatabase() {
+				if (repository.count() == 0L) {
+					return super.initializeDatabase();
+				}
+				return false;
+			}
+		};
+	}
 }

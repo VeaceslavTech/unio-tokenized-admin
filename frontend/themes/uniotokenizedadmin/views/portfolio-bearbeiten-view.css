@@ -12,3 +12,7 @@
   margin-bottom: var(--lumo-space-s);
   margin-top: var(--lumo-space-l);
 }
+.centered-form {
+  display: flex;
+  justify-content: center;
+}

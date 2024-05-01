@@ -2,10 +2,8 @@ package at.unio.admin.views;
 
 import at.unio.admin.data.entity.User;
 import at.unio.admin.security.AuthenticatedUser;
+import at.unio.admin.views.allPortfolios.AllPortfoliosView;
 import at.unio.admin.views.impactplans.ImpactPlansView;
-import at.unio.admin.views.investorlist.InvestorListView;
-import at.unio.admin.views.portfoliobearbeiten.PortfolioBearbeitenView;
-import at.unio.admin.views.portofoliooverview.PortofolioOverviewView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.avatar.Avatar;
@@ -155,15 +153,8 @@ public class MainLayout extends AppLayout {
     private MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[]{ //
                 new MenuItemInfo("Portofolio Overview", LineAwesomeIcon.HOME_SOLID.create(),
-                        PortofolioOverviewView.class), //
-
-                new MenuItemInfo("Investor List", LineAwesomeIcon.PERSON_BOOTH_SOLID.create(), InvestorListView.class), //
-
-                new MenuItemInfo("Impact Plans", LineAwesomeIcon.ADDRESS_CARD.create(), ImpactPlansView.class), //
-
-                new MenuItemInfo("Portfolio Bearbeiten", LineAwesomeIcon.OBJECT_UNGROUP.create(),
-                        PortfolioBearbeitenView.class), //
-
+                        AllPortfoliosView.class), //
+                new MenuItemInfo("Impact Plans", LineAwesomeIcon.ADDRESS_CARD.create(), ImpactPlansView.class)
         };
     }
 

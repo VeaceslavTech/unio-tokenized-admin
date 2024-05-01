@@ -1,5 +1,7 @@
 package at.unio.admin.views.portofoliooverview;
 
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.ListItem;
@@ -19,9 +21,16 @@ import com.vaadin.flow.theme.lumo.LumoUtility.Padding;
 import com.vaadin.flow.theme.lumo.LumoUtility.TextColor;
 import com.vaadin.flow.theme.lumo.LumoUtility.Width;
 
-public class PortofolioOverviewViewCard extends ListItem {
+import at.unio.admin.data.entity.Property;
 
-    public PortofolioOverviewViewCard(String text, String url) {
+public class PropertyOverviewViewCard extends ListItem {
+
+	private static final long serialVersionUID = 1L;
+	private Property property;
+	
+
+	
+    public PropertyOverviewViewCard(Property property) {
         addClassNames(Background.CONTRAST_5, Display.FLEX, FlexDirection.COLUMN, AlignItems.START, Padding.MEDIUM,
                 BorderRadius.LARGE);
 
@@ -29,31 +38,30 @@ public class PortofolioOverviewViewCard extends ListItem {
         div.addClassNames(Background.CONTRAST, Display.FLEX, AlignItems.CENTER, JustifyContent.CENTER,
                 Margin.Bottom.MEDIUM, Overflow.HIDDEN, BorderRadius.MEDIUM, Width.FULL);
         div.setHeight("160px");
-
+		var firstPicture = property.getTitlePictureUrl() == null ? " " : property.getTitlePictureUrl();
         Image image = new Image();
         image.setWidth("100%");
-        image.setSrc(url);
-        image.setAlt(text);
-
+        image.setSrc(firstPicture);
         div.add(image);
 
         Span header = new Span();
         header.addClassNames(FontSize.XLARGE, FontWeight.SEMIBOLD);
-        header.setText("Title");
+		header.setText(property.getTitle());
 
         Span subtitle = new Span();
         subtitle.addClassNames(FontSize.SMALL, TextColor.SECONDARY);
-        subtitle.setText("Card subtitle");
+        subtitle.setText(property.getDescription());
 
-        Paragraph description = new Paragraph(
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.");
-        description.addClassName(Margin.Vertical.MEDIUM);
+        Paragraph descriptionField = new Paragraph(
+                property.getDescription());
+        descriptionField.addClassName(Margin.Vertical.MEDIUM);
 
-        Span badge = new Span();
+        Button badge = new Button("Edit",clickEvent -> {
+            UI.getCurrent().navigate("property/edit/" + property.getId());
+        });
         badge.getElement().setAttribute("theme", "badge");
-        badge.setText("Label");
+        badge.setText("Edit");
 
-        add(div, header, subtitle, description, badge);
-
-    }
+        add(div, header, subtitle, descriptionField, badge);
+}
 }
